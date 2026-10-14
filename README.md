@@ -1,140 +1,156 @@
-﻿# ≡ƒÅÑ MediCare Pro ΓÇô Hospital Patient & Doctor Management System
+﻿# MediCare Pro — Hospital Management System
 
-A production-ready, full-stack hospital management SaaS with separate portals for Admin, Doctor, and Patient.
+Full-stack hospital management app with separate portals for **Admin**, **Doctor**, and **Patient**.
 
----
+- **Backend:** Node.js + Express + TypeScript, MongoDB (Mongoose) with in-memory mock fallback, JWT auth, Zod validation, Groq AI endpoint
+- **Frontend:** Next.js 15 (App Router) + React 19 + TypeScript, Tailwind CSS, React Hook Form + Zod, Axios, Recharts
 
-## ≡ƒÜÇ Tech Stack
+## Prerequisites
 
-**Frontend:** Next.js 15, TypeScript, Tailwind CSS, Framer Motion, Recharts, Radix UI  
-**Backend:** Node.js, Express.js, MongoDB, JWT Authentication, bcrypt
+- Node.js 18+
+- MongoDB (optional — backend runs in mock mode if `MONGODB_URI` is unreachable)
 
----
-
-## ≡ƒôï Prerequisites
-
-- Node.js v18+
-- MongoDB (local or [MongoDB Atlas](https://cloud.mongodb.com))
-
----
-
-## ΓÜí Quick Start
-
-### 1. Clone & Install
+## Quick Start
 
 ```bash
-# Backend
+# 1. Clone
+git clone https://github.com/LOGESH1910/hospital-management-system.git
+cd hospital-management-system
+
+# 2. Backend
 cd backend
 npm install
+npm run dev        # http://localhost:5000
 
-# Frontend
-cd ../frontend
-npm install
-```
-
-### 2. Configure Backend
-
-Edit `backend/.env`:
-```env
-MONGODB_URI=mongodb://localhost:27017/medicare_pro
-JWT_SECRET=your_super_secret_key
-JWT_REFRESH_SECRET=your_refresh_secret_key
-```
-
-### 3. Seed the Database
-
-```bash
-cd backend
-npm run seed
-```
-
-This creates demo accounts:
-
-| Role    | Email                  | Password    |
-|---------|------------------------|-------------|
-| Admin   | admin@medicare.com     | Admin@123   |
-| Doctor  | doctor@medicare.com    | Doctor@123  |
-| Patient | patient@medicare.com   | Patient@123 |
-
-### 4. Start the Servers
-
-**Backend** (terminal 1):
-```bash
-cd backend
-npm run dev
-# Runs on http://localhost:5000
-```
-
-**Frontend** (terminal 2):
-```bash
+# 3. Frontend (new terminal)
 cd frontend
-npm run dev
-# Runs on http://localhost:3000
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-### 5. Open Browser
+Open http://localhost:3000 and check backend health at http://localhost:5000/health.
 
-Visit [http://localhost:3000](http://localhost:3000)
+## Environment Variables
 
----
+Backend (`backend/.env`) — never committed:
 
-## ≡ƒùé Project Structure
-
-```
-hospital management system/
-Γö£ΓöÇΓöÇ backend/
-Γöé   Γö£ΓöÇΓöÇ config/         # MongoDB connection
-Γöé   Γö£ΓöÇΓöÇ controllers/    # Route handlers (auth, doctors, patients, appointments...)
-Γöé   Γö£ΓöÇΓöÇ middleware/     # JWT auth, error handler
-Γöé   Γö£ΓöÇΓöÇ models/         # Mongoose schemas
-Γöé   Γö£ΓöÇΓöÇ routes/         # Express routes
-Γöé   Γö£ΓöÇΓöÇ utils/          # Token helpers, seeder
-Γöé   ΓööΓöÇΓöÇ server.js       # Express app entry
-Γöé
-ΓööΓöÇΓöÇ frontend/
-    Γö£ΓöÇΓöÇ app/
-    Γöé   Γö£ΓöÇΓöÇ page.tsx                    # Landing page
-    Γöé   ΓööΓöÇΓöÇ dashboard/
-    Γöé       Γö£ΓöÇΓöÇ admin/                  # Admin dashboard + doctors/patients/appointments/departments/analytics
-    Γöé       Γö£ΓöÇΓöÇ doctor/                 # Doctor portal + appointments/patients/records/prescriptions/profile
-    Γöé       ΓööΓöÇΓöÇ patient/                # Patient portal + book/appointments/records/prescriptions/profile
-    Γö£ΓöÇΓöÇ components/
-    Γöé   Γö£ΓöÇΓöÇ auth/       # Login/Register modal
-    Γöé   Γö£ΓöÇΓöÇ dashboard/  # StatCard, charts
-    Γöé   Γö£ΓöÇΓöÇ layout/     # DashboardLayout (sidebar + topbar)
-    Γöé   ΓööΓöÇΓöÇ ui/         # Button, Card, Badge, Input, Dialog, Avatar
-    ΓööΓöÇΓöÇ lib/
-        Γö£ΓöÇΓöÇ api.ts          # Axios API client with all endpoints
-        Γö£ΓöÇΓöÇ auth-context.tsx # Auth state (React Context)
-        ΓööΓöÇΓöÇ utils.ts        # Helpers
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/medicare_pro
+JWT_SECRET=change-me-to-a-long-random-string
+JWT_EXPIRES_IN=7d
+CORS_ORIGIN=http://localhost:3000
+BCRYPT_SALT_ROUNDS=10
+GROQ_API_KEY=your-groq-key-here   # optional, only for /api/ai
 ```
 
----
+Frontend (`frontend/.env.local`) — never committed:
 
-## ≡ƒöæ API Endpoints
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/login` | Login |
-| POST | `/api/auth/register` | Register |
-| GET | `/api/auth/me` | Get current user |
-| GET | `/api/doctors` | List doctors (public) |
-| GET | `/api/doctors/:id/slots` | Get available time slots |
-| GET | `/api/patients/profile/me` | Patient profile |
-| GET | `/api/appointments` | List appointments |
-| POST | `/api/appointments` | Book appointment |
-| GET | `/api/departments` | List departments |
-| GET | `/api/admin/stats` | Admin dashboard stats |
-| GET | `/api/admin/trends/appointments` | Appointment trends chart |
+## Scripts
 
----
+Backend (`backend/`):
 
-## Γ£¿ Features
+| Command      | What it does                        |
+|--------------|-------------------------------------|
+| `npm run dev`   | Start API in watch mode (ts-node-dev) |
+| `npm run build` | Compile TypeScript to `dist/`         |
+| `npm start`     | Run compiled API (`node dist/index.js`) |
+| `npm test`      | Run Jest tests                        |
+| `npm run lint`  | Run ESLint                            |
 
-- **Landing Page** ΓÇö glassmorphism hero, department cards, demo account quick-login
-- **Admin Dashboard** ΓÇö stats cards, 5 interactive charts, manage doctors/patients/appointments/departments
-- **Doctor Portal** ΓÇö today's schedule, appointment management, patient records, prescriptions, profile
-- **Patient Portal** ΓÇö 5-step appointment booking, appointment history, medical records, prescriptions, profile
-- **JWT Auth** ΓÇö access + refresh tokens, role-based route protection
-- **Responsive** ΓÇö mobile-first design, collapsible sidebar
-- **Animations** ΓÇö Framer Motion page transitions and hover effects
+Frontend (`frontend/`):
+
+| Command      | What it does                     |
+|--------------|----------------------------------|
+| `npm run dev`   | Start Next.js dev server            |
+| `npm run build` | Production build                    |
+| `npm start`     | Serve production build              |
+| `npm run lint`  | Run Next.js lint                    |
+
+## Project Structure
+
+```
+hospital-management-system/
+├── backend/
+│   ├── src/
+│   │   ├── index.ts              # Express app entry, mounts /api/*, /health
+│   │   ├── config/               # database.ts, db-adapter.ts, mock-db.ts
+│   │   ├── controllers/          # admin, appointment, auth, doctor, patient
+│   │   ├── middleware/           # auth.middleware, validator.middleware, errorHandler
+│   │   ├── models/               # appointment.model, user.model
+│   │   ├── routes/               # auth, doctor, patient, appointment, admin, ai
+│   │   ├── services/             # groqService.ts (AI)
+│   │   └── utils/                # apiError.ts
+│   ├── package.json
+│   └── tsconfig.json
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── page.tsx          # Landing page
+│   │   │   ├── login/ signup/ search/
+│   │   │   ├── patient/dashboard/
+│   │   │   ├── doctor/dashboard/
+│   │   │   ├── admin/            # dashboard, analytics, appointments,
+│   │   │   │                     # departments, doctors, medical-records,
+│   │   │   │                     # notifications, payments, prescriptions, settings
+│   │   │   └── api/              # Next.js proxy routes to the backend
+│   │   ├── components/           # layout, sections, ui (buttons, cards, tables...)
+│   │   ├── lib/                  # utils.ts
+│   │   └── styles/
+│   ├── public/assets/
+│   ├── package.json
+│   └── tailwind.config.ts
+├── .gitignore
+└── README.md
+```
+
+## API Reference (Backend)
+
+Base URL: `http://localhost:5000`
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/health` | — | API + DB status |
+| POST | `/api/auth/register` | — | Register (validated with Zod) |
+| POST | `/api/auth/login` | — | Login, returns JWT |
+| GET | `/api/auth/me` | User | Current user |
+| POST | `/api/auth/logout` | — | Clear auth cookie |
+| GET | `/api/doctors` | — | List/search doctors |
+| GET | `/api/patients/...` | Patient | Patient profile + records |
+| GET/POST | `/api/appointments` | User | List / book appointments |
+| GET | `/api/admin/dashboard` | Admin | Dashboard stats |
+| GET | `/api/admin/recent-appointments` | Admin | Recent appointments |
+| GET | `/api/admin/recent-patients` | Admin | Recent patients |
+| GET | `/api/admin/doctors-awaiting-approval` | Admin | Approval queue |
+| PUT | `/api/admin/doctors/:id/approve` | Admin | Approve doctor |
+| PUT | `/api/admin/doctors/:id/reject` | Admin | Reject doctor |
+| PUT | `/api/admin/doctors/:id/deactivate` | Admin | Deactivate doctor |
+| GET | `/api/admin/departments` | Admin | Departments + stats |
+| GET | `/api/admin/medical-records` | Admin | All medical records |
+| GET | `/api/admin/prescriptions` | Admin | All prescriptions |
+| GET | `/api/admin/payments` | Admin | Payment summary |
+| * | `/api/ai` | User | AI assistant (needs `GROQ_API_KEY`) |
+
+The frontend calls the backend through its own `/api/*` proxy routes (see `frontend/src/app/api/`), so the browser only talks to Next.js and `NEXT_PUBLIC_API_URL` points the server components/proxies at Express.
+
+## Portals
+
+- **Patient** (`/patient/dashboard`): search doctors, book appointments, view history, cancel.
+- **Doctor** (`/doctor/dashboard`): view appointments, complete / reschedule, manage profile.
+- **Admin** (`/admin/dashboard` + sub-pages): approve doctors, manage departments, view analytics (Recharts), payments, records, prescriptions, settings.
+
+## Notes
+
+- Auth is JWT (Bearer + httpOnly cookie support) with role checks (`ADMIN`, `DOCTOR`, `PATIENT`) in `auth.middleware.ts`.
+- Request bodies are validated with Zod in `validator.middleware.ts`; errors use the shared `ApiError` handler.
+- If MongoDB is down, the backend falls back to `mock-db.ts` so the UI still runs for demo/dev.
+- `node_modules/`, `.env*`, `.next/`, and `dist/` are git-ignored and never pushed.
+
+## License
+
+MIT
