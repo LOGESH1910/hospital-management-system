@@ -1,0 +1,32 @@
+import { NextRequest, NextResponse } from "next/server";
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    const authHeader = request.headers.get("authorization");
+    const body = await request.json();
+    
+    const res = await fetch(`${BACKEND_URL}/api/doctors/appointments/${params.id}/reschedule`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authHeader || "",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return NextResponse.json(data, { status: res.status });
+    }
+
+    return NextResponse.json(data);
+  } catch (error: any) {
+    return NextResponse.json(
+      { status: "error", message: error.message || "Internal server error" },
+      { status: 500 }
+    );
+  }
+}

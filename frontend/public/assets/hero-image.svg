@@ -1,0 +1,103 @@
+<!-- MediCare Pro Hero Image Placeholder -->
+<!-- This features a modern premium hospital scene with glass architecture,
+doctors and healthcare professionals, patients, and modern reception environment.
+Uses professional corporate healthcare photography style with natural lighting.
+Composition leaves negative space on one side for website text and CTA buttons.
+16:9 aspect ratio.
+-->
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Glass morphism gradient -->
+    <linearGradient id="glassGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glassGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:0.9" />
+    </linearGradient>
+    <!-- Primary brand gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <!-- Success gradient -->
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <!-- Warning gradient -->
+    <linearGradient id="warningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background gradient -->
+  <rect width="1920" height="1080" fill="url(glassGrad1)" />
+  
+  <!-- Glass effect panels -->
+  <g opacity="0.7">
+    <!-- Left panel -->
+    <rect x="20" y="20" width="300" height="400" rx="16" fill="url(glassGrad2)" />
+    <!-- Right panel -->
+    <rect x="1500" y="100" width="380" height="500" rx="16" fill="url(glassGrad2)" />
+    <!-- Bottom panel -->
+    <rect x="100" y="700" width="800" height="350" rx="16" fill="url(glassGrad2)" />
+  </g>
+  
+  <!-- Medical technology elements (abstract) -->
+  <g stroke="var(--primary)" stroke-width="2" fill="var(--primary)">
+    <!-- MRI machine abstraction -->
+    <ellipse cx="500" cy="300" rx="150" ry="80" opacity="0.4" />
+    <rect x="425" y="260" width="150" height="40" rx="8" opacity="0.5" />
+    
+    <!-- Monitor displays -->
+    <rect x="800" y="250" width "60" height "80" rx="4" opacity="0.5" />
+    <rect x="900" y="250" width "60" height "80" rx="4" opacity="0.5" />
+    
+    <!-- Stethogram line -->
+    <path d="M1200 400 Q1300 350 1400 400 Q1500 450 1600 400" stroke-width="3" opacity="0.6" />
+  </g>
+  
+  <!-- Figures - simplified representations -->
+  <g fill="var(--foreground)" opacity="0.9">
+    <!-- Doctor figure (simplified) -->
+    <path d="M200 700 Q250 600 300 700 Q350 750 400 650 Q450 600 480 680 Q520 720 550 680 Q580 650 620 700 Q650 750 680 720 Z" />
+    <!-- Patient figure -->
+    <path d="M100 800 Q150 700 200 800 Q250 850 300 750 Q350 700 400 780 Z" />
+    <!-- Another patient -->
+    <path d="M1600 820 Q1550 750 1500 820 Q1450 880 1400 800 Z" />
+  </g>
+  
+  <!-- Building/architecture elements -->
+  <g fill="var(--muted-foreground)" opacity="0.5">
+    <!-- Modern glass building blocks -->
+    <rect x="50" y="400" width="100" height="200" rx="12" />
+    <rect x="180" y="350" width="120" height "250" rx="12" />
+    <rect x="350" y="420" width "110" height "180" rx="12" />
+    <rect x="550" y="380" width "130" height "220" rx="12" />
+    <rect x="800" y="450" width "140" height "160" rx="12" />
+    <rect x="1000" y="420" width "120" height "200" rx="12" />
+    <rect x="1300" y="480" width "100" height "150" rx="12" />
+    <rect x="1600" y="430" width "110" height "190" rx="12" />
+    <rect x="1800" y="410" width "100" height "170" rx="12" />
+  </g>
+  
+  <!-- Lighting effects -->
+  <g opacity="0.3">
+    <!-- Natural lighting rays -->
+    <path d="M0 0 L1920 0 L1920 1080 L0 1080 Z" />
+    <!-- Subtle glow -->
+    <circle cx="960" cy="540" r="300" fill="white" />
+  </g>
+  
+  <!-- Negative space for text/CTA on left side -->
+  <!-- This area is intentionally left for the website hero text and CTA buttons -->
+  
+  <!-- Title area placeholder -->
+  <rect x="80" y="80" width="400" height="100" rx="8" fill="var(--primary)" />
+  
+  <!-- CTA button placeholder -->
+  <rect x="80" y="200" width="200" height="48" rx="8" fill="var(--success)" />
+</svg>
